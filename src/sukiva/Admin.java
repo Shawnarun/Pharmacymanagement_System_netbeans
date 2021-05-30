@@ -79,7 +79,7 @@ public class Admin extends javax.swing.JFrame {
 
         employer.setBackground(new java.awt.Color(138, 104, 191));
         employer.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
-        employer.setText("Employer");
+        employer.setText("Bank");
         employer.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         employer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,14 +101,14 @@ public class Admin extends javax.swing.JFrame {
 
         accounts1.setBackground(new java.awt.Color(138, 104, 191));
         accounts1.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
-        accounts1.setText("Accounts");
+        accounts1.setText("Cash In Hand");
         accounts1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         accounts1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 accounts1ActionPerformed(evt);
             }
         });
-        getContentPane().add(accounts1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 70, 160, 40));
+        getContentPane().add(accounts1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 70, 160, 40));
 
         stock.setBackground(new java.awt.Color(176, 106, 179));
         stock.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
@@ -216,7 +216,7 @@ public class Admin extends javax.swing.JFrame {
     private void employerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employerActionPerformed
         // TODO add your handling code here:accounts
          q.removeAll();
-        Employer ne = new Employer();
+        Bank ne = new Bank();
         q.add(ne).setVisible(true);
     }//GEN-LAST:event_employerActionPerformed
 

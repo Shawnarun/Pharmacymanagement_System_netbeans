@@ -28,12 +28,19 @@ public class stock extends javax.swing.JInternalFrame {
         bi.setNorthPane(null);
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
-        tdrn.setBackground(new java.awt.Color(0,0,0,1));
+        tsearch2.setBackground(new java.awt.Color(0,0,0,1));
         tdri.setBackground(new java.awt.Color(0,0,0,1));
+               tdrn.setBackground(new java.awt.Color(0,0,0,1));
+
         tqua.setBackground(new java.awt.Color(0,0,0,1));
         tunp.setBackground(new java.awt.Color(0,0,0,1));
+        tbn.setBackground(new java.awt.Color(0,0,0,1));
+        tta.setBackground(new java.awt.Color(0,0,0,1));
+
+        
+        
+        tsearch.setBackground(new java.awt.Color(0,0,0,0));
         tdis.setBackground(new java.awt.Color(0,0,0,0));
-       
         
         scroll.setBackground(new java.awt.Color(0,0,0,1));
         scroll.getViewport().setBackground(new java.awt.Color(0,0,0,1));
@@ -44,7 +51,7 @@ public class stock extends javax.swing.JInternalFrame {
         st.getTableHeader().setFont(new Font("Times New Roman", Font.BOLD, 14));
         
     
-        Object columns[] = {"Drugs Name", "EXP Date", "Distributor Name","Quantity","Unit Price"};
+        Object columns[] = {"Drugs Name", "EXP Date", "Distributor Name","Brand Name","Quantity"};
         defaultTableModel.setColumnIdentifiers(columns);
         st.setModel(defaultTableModel);
   
@@ -61,7 +68,7 @@ public class stock extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jButton2 = new javax.swing.JButton();
-        tdis = new javax.swing.JComboBox<>();
+        tsearch = new javax.swing.JComboBox<>();
         dri = new javax.swing.JLabel();
         exd = new javax.swing.JLabel();
         dis = new javax.swing.JLabel();
@@ -71,7 +78,7 @@ public class stock extends javax.swing.JInternalFrame {
         tdri = new javax.swing.JTextField();
         tqua = new javax.swing.JTextField();
         tunp = new javax.swing.JTextField();
-        tdrn = new javax.swing.JTextField();
+        tsearch2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         dd = new javax.swing.JLabel();
@@ -80,6 +87,12 @@ public class stock extends javax.swing.JInternalFrame {
         jButton4 = new javax.swing.JButton();
         scroll = new javax.swing.JScrollPane();
         st = new javax.swing.JTable();
+        tdis = new javax.swing.JComboBox<>();
+        tdrn = new javax.swing.JTextField();
+        tbn = new javax.swing.JTextField();
+        bn = new javax.swing.JLabel();
+        ta = new javax.swing.JLabel();
+        tta = new javax.swing.JTextField();
         bg = new javax.swing.JLabel();
 
         setBorder(null);
@@ -90,103 +103,108 @@ public class stock extends javax.swing.JInternalFrame {
         jButton2.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 0, 204));
         jButton2.setText("Delete");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 80, 40));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 80, 40));
 
-        tdis.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        tdis.setOpaque(false);
-        getContentPane().add(tdis, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 160, 30));
+        tsearch.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        tsearch.setOpaque(false);
+        getContentPane().add(tsearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 440, 160, 40));
 
         dri.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         dri.setForeground(new java.awt.Color(0, 0, 0));
         dri.setText("Drug ID");
-        getContentPane().add(dri, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 120, 30));
+        getContentPane().add(dri, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 120, 30));
 
         exd.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         exd.setForeground(new java.awt.Color(0, 0, 0));
         exd.setText("EXP Date");
-        getContentPane().add(exd, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 120, 30));
+        getContentPane().add(exd, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 120, 30));
 
         dis.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         dis.setForeground(new java.awt.Color(0, 0, 0));
         dis.setText("Distributor");
-        getContentPane().add(dis, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 120, 30));
+        getContentPane().add(dis, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 120, 30));
 
         unp.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         unp.setForeground(new java.awt.Color(0, 0, 0));
         unp.setText("Unit price");
-        getContentPane().add(unp, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 120, 30));
+        getContentPane().add(unp, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 120, 30));
 
         drn.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         drn.setForeground(new java.awt.Color(0, 0, 0));
-        drn.setText("Drug name");
-        getContentPane().add(drn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 120, 30));
+        drn.setText("Drug Name");
+        getContentPane().add(drn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 120, 30));
 
         qua.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         qua.setForeground(new java.awt.Color(0, 0, 0));
         qua.setText("Quantity");
-        getContentPane().add(qua, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 120, 30));
+        getContentPane().add(qua, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 120, 30));
 
         tdri.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
         tdri.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         tdri.setOpaque(false);
         tdri.setPreferredSize(new java.awt.Dimension(6, 22));
-        getContentPane().add(tdri, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 160, 20));
+        getContentPane().add(tdri, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 160, 20));
 
         tqua.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
         tqua.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         tqua.setOpaque(false);
         tqua.setPreferredSize(new java.awt.Dimension(6, 22));
-        getContentPane().add(tqua, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 160, 20));
+        getContentPane().add(tqua, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, 160, 20));
 
         tunp.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
         tunp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         tunp.setOpaque(false);
         tunp.setPreferredSize(new java.awt.Dimension(6, 22));
-        getContentPane().add(tunp, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, 160, 20));
+        getContentPane().add(tunp, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, 160, 20));
 
-        tdrn.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
-        tdrn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        tdrn.setOpaque(false);
-        tdrn.setPreferredSize(new java.awt.Dimension(6, 22));
-        tdrn.addActionListener(new java.awt.event.ActionListener() {
+        tsearch2.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
+        tsearch2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        tsearch2.setOpaque(false);
+        tsearch2.setPreferredSize(new java.awt.Dimension(6, 22));
+        tsearch2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tdrnActionPerformed(evt);
+                tsearch2ActionPerformed(evt);
             }
         });
-        getContentPane().add(tdrn, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 160, 20));
+        getContentPane().add(tsearch2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 500, 160, 30));
 
         jButton1.setBackground(new java.awt.Color(176, 106, 179));
         jButton1.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 0, 204));
         jButton1.setText("Search");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 400, 140, 40));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 440, 110, 40));
 
         jButton3.setBackground(new java.awt.Color(176, 106, 179));
         jButton3.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(0, 0, 204));
         jButton3.setText("update");
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 90, 40));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 90, 40));
 
         dd.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         dd.setForeground(new java.awt.Color(0, 0, 0));
-        dd.setText("Distribute Date");
-        getContentPane().add(dd, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 130, 30));
+        dd.setText("Delivery Date");
+        getContentPane().add(dd, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 130, 30));
 
         tdd.setOpaque(false);
         tdd.setPreferredSize(new java.awt.Dimension(22, 6));
-        getContentPane().add(tdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, 160, 30));
+        getContentPane().add(tdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 160, 30));
 
         texp.setBackground(new java.awt.Color(176, 106, 179));
         texp.setForeground(new java.awt.Color(176, 106, 179));
         texp.setOpaque(false);
         texp.setPreferredSize(new java.awt.Dimension(22, 6));
-        getContentPane().add(texp, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 160, 30));
+        getContentPane().add(texp, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 160, 30));
 
         jButton4.setBackground(new java.awt.Color(176, 106, 179));
         jButton4.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(0, 0, 204));
         jButton4.setText("Add");
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 80, 40));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 80, 40));
 
         scroll.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         scroll.setOpaque(false);
@@ -212,6 +230,43 @@ public class stock extends javax.swing.JInternalFrame {
 
         getContentPane().add(scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 610, 530));
 
+        tdis.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        tdis.setOpaque(false);
+        getContentPane().add(tdis, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 160, 30));
+
+        tdrn.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
+        tdrn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        tdrn.setOpaque(false);
+        tdrn.setPreferredSize(new java.awt.Dimension(6, 22));
+        tdrn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tdrnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(tdrn, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 160, 20));
+
+        tbn.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
+        tbn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        tbn.setOpaque(false);
+        tbn.setPreferredSize(new java.awt.Dimension(6, 22));
+        getContentPane().add(tbn, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 160, 20));
+
+        bn.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
+        bn.setForeground(new java.awt.Color(0, 0, 0));
+        bn.setText("Brand Name");
+        getContentPane().add(bn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 120, 30));
+
+        ta.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
+        ta.setForeground(new java.awt.Color(0, 0, 0));
+        ta.setText("Total Amount");
+        getContentPane().add(ta, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 120, 30));
+
+        tta.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
+        tta.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        tta.setOpaque(false);
+        tta.setPreferredSize(new java.awt.Dimension(6, 22));
+        getContentPane().add(tta, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 330, 160, 20));
+
         bg.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         bg.setForeground(new java.awt.Color(0, 0, 204));
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sukiva/images/large.png"))); // NOI18N
@@ -222,6 +277,14 @@ public class stock extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tsearch2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tsearch2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tsearch2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void tdrnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tdrnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tdrnActionPerformed
@@ -229,6 +292,7 @@ public class stock extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bg;
+    private javax.swing.JLabel bn;
     private javax.swing.JLabel dd;
     private javax.swing.JLabel dis;
     private javax.swing.JLabel dri;
@@ -241,12 +305,17 @@ public class stock extends javax.swing.JInternalFrame {
     private javax.swing.JLabel qua;
     private javax.swing.JScrollPane scroll;
     private javax.swing.JTable st;
+    private javax.swing.JLabel ta;
+    private javax.swing.JTextField tbn;
     private com.toedter.calendar.JDateChooser tdd;
     private javax.swing.JComboBox<String> tdis;
     private javax.swing.JTextField tdri;
     private javax.swing.JTextField tdrn;
     private com.toedter.calendar.JDateChooser texp;
     private javax.swing.JTextField tqua;
+    private javax.swing.JComboBox<String> tsearch;
+    private javax.swing.JTextField tsearch2;
+    private javax.swing.JTextField tta;
     private javax.swing.JTextField tunp;
     private javax.swing.JLabel unp;
     // End of variables declaration//GEN-END:variables

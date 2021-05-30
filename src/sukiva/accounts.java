@@ -5,13 +5,17 @@
  */
 package sukiva;
 
+import java.awt.Font;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 /**
  *
  * @author Snake_Eye
  */
 public class accounts extends javax.swing.JInternalFrame {
+  DefaultTableModel defaultTableModel = new DefaultTableModel();
 
     /**
      * Creates new form accounts
@@ -22,6 +26,30 @@ public class accounts extends javax.swing.JInternalFrame {
         bi.setNorthPane(null);
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
+        
+        tasearch.setBackground(new java.awt.Color(0,0,0,0));
+        tadate.setBackground(new java.awt.Color(0,0,0,0));
+        tasearch2.setBackground(new java.awt.Color(0,0,0,1));
+        tades.setBackground(new java.awt.Color(0,0,0,1));
+         taamt.setBackground(new java.awt.Color(0,0,0,1));
+         
+         
+         
+         
+           
+          ascroll.setBackground(new java.awt.Color(0,0,0,1));
+        ascroll.getViewport().setBackground(new java.awt.Color(0,0,0,1));
+         at.setBackground(new java.awt.Color(0,0,0,1));
+     
+         
+         JTableHeader header = at.getTableHeader();
+        header.setBackground(new java.awt.Color(0,0,0,0));
+        at.getTableHeader().setFont(new Font("Times New Roman", Font.BOLD, 14));
+        
+    
+        Object columns[] = {"Description"," Debit","Credit"};
+        defaultTableModel.setColumnIdentifiers(columns);
+        at.setModel(defaultTableModel);
     }
 
     /**
@@ -33,15 +61,137 @@ public class accounts extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
+        ades = new javax.swing.JLabel();
+        aamt = new javax.swing.JLabel();
+        tades = new javax.swing.JTextField();
+        tadate = new com.toedter.calendar.JDateChooser();
+        adate = new javax.swing.JLabel();
+        credit = new javax.swing.JButton();
+        adelete = new javax.swing.JButton();
+        eupdate = new javax.swing.JButton();
+        asearch = new javax.swing.JButton();
+        tasearch = new javax.swing.JComboBox<>();
+        tasearch2 = new javax.swing.JTextField();
+        taamt = new javax.swing.JTextField();
+        debit1 = new javax.swing.JButton();
+        ascroll = new javax.swing.JScrollPane();
+        at = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(960, 560));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Ebrima", 1, 48)); // NOI18N
-        jLabel2.setText("Accounts");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, 290, 60));
+        ades.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
+        ades.setForeground(new java.awt.Color(0, 0, 0));
+        ades.setText("Description");
+        getContentPane().add(ades, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 120, 30));
+
+        aamt.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
+        aamt.setForeground(new java.awt.Color(0, 0, 0));
+        aamt.setText("Amount");
+        getContentPane().add(aamt, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 120, 30));
+
+        tades.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
+        tades.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        tades.setOpaque(false);
+        tades.setPreferredSize(new java.awt.Dimension(6, 22));
+        getContentPane().add(tades, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 160, 20));
+
+        tadate.setBackground(new java.awt.Color(176, 106, 179));
+        tadate.setForeground(new java.awt.Color(176, 106, 179));
+        tadate.setOpaque(false);
+        tadate.setPreferredSize(new java.awt.Dimension(22, 6));
+        getContentPane().add(tadate, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 160, 30));
+
+        adate.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
+        adate.setForeground(new java.awt.Color(0, 0, 0));
+        adate.setText("Date");
+        getContentPane().add(adate, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 120, 30));
+
+        credit.setBackground(new java.awt.Color(176, 106, 179));
+        credit.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        credit.setForeground(new java.awt.Color(0, 0, 204));
+        credit.setText("CREDIT");
+        getContentPane().add(credit, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 90, 40));
+
+        adelete.setBackground(new java.awt.Color(176, 106, 179));
+        adelete.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        adelete.setForeground(new java.awt.Color(0, 0, 204));
+        adelete.setText("Delete");
+        getContentPane().add(adelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 80, 40));
+
+        eupdate.setBackground(new java.awt.Color(176, 106, 179));
+        eupdate.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        eupdate.setForeground(new java.awt.Color(0, 0, 204));
+        eupdate.setText("update");
+        getContentPane().add(eupdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 90, 40));
+
+        asearch.setBackground(new java.awt.Color(176, 106, 179));
+        asearch.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
+        asearch.setForeground(new java.awt.Color(0, 0, 204));
+        asearch.setText("Search");
+        asearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asearchActionPerformed(evt);
+            }
+        });
+        getContentPane().add(asearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 110, 40));
+
+        tasearch.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        tasearch.setOpaque(false);
+        getContentPane().add(tasearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 390, 160, 40));
+
+        tasearch2.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
+        tasearch2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        tasearch2.setOpaque(false);
+        tasearch2.setPreferredSize(new java.awt.Dimension(6, 22));
+        tasearch2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tasearch2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(tasearch2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 450, 160, 30));
+
+        taamt.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
+        taamt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        taamt.setOpaque(false);
+        taamt.setPreferredSize(new java.awt.Dimension(6, 22));
+        getContentPane().add(taamt, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 160, 20));
+
+        debit1.setBackground(new java.awt.Color(176, 106, 179));
+        debit1.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        debit1.setForeground(new java.awt.Color(0, 0, 204));
+        debit1.setText("DEBIT");
+        debit1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                debit1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(debit1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 80, 40));
+
+        ascroll.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        ascroll.setOpaque(false);
+
+        at.setBackground(new java.awt.Color(176, 106, 179));
+        at.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        at.setFont(new java.awt.Font("Ebrima", 0, 10)); // NOI18N
+        at.setForeground(new java.awt.Color(0, 0, 0));
+        at.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        at.setGridColor(new java.awt.Color(0, 0, 0));
+        at.setOpaque(false);
+        ascroll.setViewportView(at);
+
+        getContentPane().add(ascroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 610, 530));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sukiva/images/internal.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -49,9 +199,35 @@ public class accounts extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void asearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_asearchActionPerformed
+
+    private void tasearch2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tasearch2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tasearch2ActionPerformed
+
+    private void debit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_debit1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_debit1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel aamt;
+    private javax.swing.JLabel adate;
+    private javax.swing.JButton adelete;
+    private javax.swing.JLabel ades;
+    private javax.swing.JScrollPane ascroll;
+    private javax.swing.JButton asearch;
+    private javax.swing.JTable at;
+    private javax.swing.JButton credit;
+    private javax.swing.JButton debit1;
+    private javax.swing.JButton eupdate;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JTextField taamt;
+    private com.toedter.calendar.JDateChooser tadate;
+    private javax.swing.JTextField tades;
+    private javax.swing.JComboBox<String> tasearch;
+    private javax.swing.JTextField tasearch2;
     // End of variables declaration//GEN-END:variables
 }
