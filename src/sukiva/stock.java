@@ -5,7 +5,11 @@
  */
 package sukiva;
 
+import java.awt.Font;
+import javax.swing.BorderFactory;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 /**
  *
@@ -13,21 +17,37 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
  */
 public class stock extends javax.swing.JInternalFrame {
 
-    /**
+  DefaultTableModel defaultTableModel = new DefaultTableModel();
+  /**
      * Creates new form shawn
      */
     public stock() {
         initComponents();
+        
         BasicInternalFrameUI bi = (BasicInternalFrameUI)this.getUI();
         bi.setNorthPane(null);
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
         tdrn.setBackground(new java.awt.Color(0,0,0,1));
         tdri.setBackground(new java.awt.Color(0,0,0,1));
-        texd.setBackground(new java.awt.Color(0,0,0,1));
         tqua.setBackground(new java.awt.Color(0,0,0,1));
         tunp.setBackground(new java.awt.Color(0,0,0,1));
-        tdis.setBackground(new java.awt.Color(0,0,0,1));
+        tdis.setBackground(new java.awt.Color(0,0,0,0));
+       
+        
+        scroll.setBackground(new java.awt.Color(0,0,0,1));
+        scroll.getViewport().setBackground(new java.awt.Color(0,0,0,1));
+        st.setBackground(new java.awt.Color(0,0,0,1));
+     
+        JTableHeader header = st.getTableHeader();
+        header.setBackground(new java.awt.Color(0,0,0,0));
+        st.getTableHeader().setFont(new Font("Times New Roman", Font.BOLD, 14));
+        
+    
+        Object columns[] = {"Drugs Name", "EXP Date", "Distributor Name","Quantity","Unit Price"};
+        defaultTableModel.setColumnIdentifiers(columns);
+        st.setModel(defaultTableModel);
+  
         
     }
 
@@ -40,6 +60,8 @@ public class stock extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton2 = new javax.swing.JButton();
+        tdis = new javax.swing.JComboBox<>();
         dri = new javax.swing.JLabel();
         exd = new javax.swing.JLabel();
         dis = new javax.swing.JLabel();
@@ -47,19 +69,32 @@ public class stock extends javax.swing.JInternalFrame {
         drn = new javax.swing.JLabel();
         qua = new javax.swing.JLabel();
         tdri = new javax.swing.JTextField();
-        texd = new javax.swing.JTextField();
         tqua = new javax.swing.JTextField();
-        tdis = new javax.swing.JTextField();
         tunp = new javax.swing.JTextField();
         tdrn = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        dd = new javax.swing.JLabel();
+        tdd = new com.toedter.calendar.JDateChooser();
+        texp = new com.toedter.calendar.JDateChooser();
+        jButton4 = new javax.swing.JButton();
+        scroll = new javax.swing.JScrollPane();
+        st = new javax.swing.JTable();
         bg = new javax.swing.JLabel();
 
         setBorder(null);
         setPreferredSize(new java.awt.Dimension(960, 560));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton2.setBackground(new java.awt.Color(176, 106, 179));
+        jButton2.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(0, 0, 204));
+        jButton2.setText("Delete");
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 80, 40));
+
+        tdis.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        tdis.setOpaque(false);
+        getContentPane().add(tdis, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 160, 30));
 
         dri.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         dri.setForeground(new java.awt.Color(0, 0, 0));
@@ -95,36 +130,19 @@ public class stock extends javax.swing.JInternalFrame {
         tdri.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         tdri.setOpaque(false);
         tdri.setPreferredSize(new java.awt.Dimension(6, 22));
-        getContentPane().add(tdri, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, 160, 20));
-
-        texd.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
-        texd.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        texd.setOpaque(false);
-        texd.setPreferredSize(new java.awt.Dimension(6, 22));
-        getContentPane().add(texd, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 160, 20));
+        getContentPane().add(tdri, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 160, 20));
 
         tqua.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
         tqua.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         tqua.setOpaque(false);
         tqua.setPreferredSize(new java.awt.Dimension(6, 22));
-        getContentPane().add(tqua, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 160, 20));
-
-        tdis.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
-        tdis.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        tdis.setOpaque(false);
-        tdis.setPreferredSize(new java.awt.Dimension(6, 22));
-        tdis.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tdisActionPerformed(evt);
-            }
-        });
-        getContentPane().add(tdis, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 160, 20));
+        getContentPane().add(tqua, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 160, 20));
 
         tunp.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
         tunp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         tunp.setOpaque(false);
         tunp.setPreferredSize(new java.awt.Dimension(6, 22));
-        getContentPane().add(tunp, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 160, 20));
+        getContentPane().add(tunp, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, 160, 20));
 
         tdrn.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
         tdrn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -135,25 +153,64 @@ public class stock extends javax.swing.JInternalFrame {
                 tdrnActionPerformed(evt);
             }
         });
-        getContentPane().add(tdrn, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 160, 20));
+        getContentPane().add(tdrn, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 160, 20));
 
         jButton1.setBackground(new java.awt.Color(176, 106, 179));
-        jButton1.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 0, 204));
-        jButton1.setText("Add");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 80, -1));
-
-        jButton2.setBackground(new java.awt.Color(176, 106, 179));
-        jButton2.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 0, 204));
-        jButton2.setText("Delete");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 80, -1));
+        jButton1.setText("Search");
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 400, 140, 40));
 
         jButton3.setBackground(new java.awt.Color(176, 106, 179));
         jButton3.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(0, 0, 204));
         jButton3.setText("update");
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, 80, -1));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 90, 40));
+
+        dd.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
+        dd.setForeground(new java.awt.Color(0, 0, 0));
+        dd.setText("Distribute Date");
+        getContentPane().add(dd, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 130, 30));
+
+        tdd.setOpaque(false);
+        tdd.setPreferredSize(new java.awt.Dimension(22, 6));
+        getContentPane().add(tdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, 160, 30));
+
+        texp.setBackground(new java.awt.Color(176, 106, 179));
+        texp.setForeground(new java.awt.Color(176, 106, 179));
+        texp.setOpaque(false);
+        texp.setPreferredSize(new java.awt.Dimension(22, 6));
+        getContentPane().add(texp, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 160, 30));
+
+        jButton4.setBackground(new java.awt.Color(176, 106, 179));
+        jButton4.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(0, 0, 204));
+        jButton4.setText("Add");
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 80, 40));
+
+        scroll.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        scroll.setOpaque(false);
+
+        st.setBackground(new java.awt.Color(176, 106, 179));
+        st.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        st.setFont(new java.awt.Font("Ebrima", 0, 10)); // NOI18N
+        st.setForeground(new java.awt.Color(0, 0, 0));
+        st.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        st.setGridColor(new java.awt.Color(0, 0, 0));
+        st.setOpaque(false);
+        scroll.setViewportView(st);
+
+        getContentPane().add(scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 610, 530));
 
         bg.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         bg.setForeground(new java.awt.Color(0, 0, 204));
@@ -165,10 +222,6 @@ public class stock extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tdisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tdisActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tdisActionPerformed
-
     private void tdrnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tdrnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tdrnActionPerformed
@@ -176,6 +229,7 @@ public class stock extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bg;
+    private javax.swing.JLabel dd;
     private javax.swing.JLabel dis;
     private javax.swing.JLabel dri;
     private javax.swing.JLabel drn;
@@ -183,11 +237,15 @@ public class stock extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel qua;
-    private javax.swing.JTextField tdis;
+    private javax.swing.JScrollPane scroll;
+    private javax.swing.JTable st;
+    private com.toedter.calendar.JDateChooser tdd;
+    private javax.swing.JComboBox<String> tdis;
     private javax.swing.JTextField tdri;
     private javax.swing.JTextField tdrn;
-    private javax.swing.JTextField texd;
+    private com.toedter.calendar.JDateChooser texp;
     private javax.swing.JTextField tqua;
     private javax.swing.JTextField tunp;
     private javax.swing.JLabel unp;
