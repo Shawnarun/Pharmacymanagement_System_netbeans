@@ -99,13 +99,13 @@ public class distributor extends javax.swing.JInternalFrame {
 
         name.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         name.setForeground(new java.awt.Color(0, 0, 0));
-        name.setText("Name");
-        getContentPane().add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 120, 30));
+        name.setText("Company Name");
+        getContentPane().add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 140, 30));
 
         agn.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         agn.setForeground(new java.awt.Color(0, 0, 0));
-        agn.setText("Agent Name");
-        getContentPane().add(agn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 120, 30));
+        agn.setText("Sales Rep Name");
+        getContentPane().add(agn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 140, 30));
 
         tagn.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
         tagn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -117,7 +117,7 @@ public class distributor extends javax.swing.JInternalFrame {
         dsearch.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         dsearch.setForeground(new java.awt.Color(0, 0, 204));
         dsearch.setText("Search");
-        getContentPane().add(dsearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 110, 40));
+        getContentPane().add(dsearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 110, 30));
 
         tname.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
         tname.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -155,7 +155,7 @@ public class distributor extends javax.swing.JInternalFrame {
 
         cn.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         cn.setForeground(new java.awt.Color(0, 0, 0));
-        cn.setText("Contact NO");
+        cn.setText("Contact No");
         getContentPane().add(cn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 120, 30));
 
         dscroll.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -182,6 +182,8 @@ public class distributor extends javax.swing.JInternalFrame {
 
         getContentPane().add(dscroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 610, 530));
 
+        tdsearch.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
+        tdsearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Company Name", "Contact No", "Sales Rep Name", "Due" }));
         tdsearch.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         tdsearch.setOpaque(false);
         tdsearch.addActionListener(new java.awt.event.ActionListener() {

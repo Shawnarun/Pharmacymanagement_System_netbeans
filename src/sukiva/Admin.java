@@ -214,7 +214,7 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_chequeActionPerformed
 
     private void employerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employerActionPerformed
-        // TODO add your handling code here:accounts
+        // TODO add your handling code here:CashinHand
          q.removeAll();
         Bank ne = new Bank();
         q.add(ne).setVisible(true);
@@ -243,7 +243,7 @@ public class Admin extends javax.swing.JFrame {
     private void accounts1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accounts1ActionPerformed
         // TODO add your handling code here:
         q.removeAll();
-        accounts ne = new accounts();
+        CashinHand ne = new CashinHand();
         q.add(ne).setVisible(true);
     }//GEN-LAST:event_accounts1ActionPerformed
 
@@ -278,6 +278,8 @@ public class Admin extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Admin().setVisible(true);
+                
+               
             }
         });
     }
@@ -292,7 +294,7 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel q;
+    public static javax.swing.JPanel q;
     private javax.swing.JButton stock;
     // End of variables declaration//GEN-END:variables
 }

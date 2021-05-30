@@ -6,6 +6,7 @@
 
 package sukiva;
 
+import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Font;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
@@ -26,7 +27,7 @@ DefaultTableModel defaultTableModel = new DefaultTableModel();
 this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
 tbsearch.setBackground(new java.awt.Color(0,0,0,0));
-        tbdate.setBackground(new java.awt.Color(0,0,0,0));
+        tbser.setBackground(new java.awt.Color(0,0,0,0));
         tbsearch2.setBackground(new java.awt.Color(0,0,0,1));
         tbdes.setBackground(new java.awt.Color(0,0,0,1));
          tbamt.setBackground(new java.awt.Color(0,0,0,1));
@@ -51,7 +52,15 @@ tbsearch.setBackground(new java.awt.Color(0,0,0,0));
 
 
 
+        ((JTextFieldDateEditor)tbdate.getDateEditor()).setBackground(new java.awt.Color(0,0,0,1));
+        ((JTextFieldDateEditor)tbdate.getDateEditor()).setBorder(javax.swing.BorderFactory.createEmptyBorder());
+        (tbdate.getCalendarButton()).setBackground(new java.awt.Color(0,0,0,0));
 
+
+
+        ((JTextFieldDateEditor)tbser.getDateEditor()).setBackground(new java.awt.Color(0,0,0,1));
+        ((JTextFieldDateEditor)tbser.getDateEditor()).setBorder(javax.swing.BorderFactory.createEmptyBorder());
+        (tbser.getCalendarButton()).setBackground(new java.awt.Color(0,0,0,0));
     }
 
     /** This method is called from within the constructor to
@@ -71,13 +80,19 @@ tbsearch.setBackground(new java.awt.Color(0,0,0,0));
         bt = new javax.swing.JTable();
         bdebit = new javax.swing.JButton();
         bdes = new javax.swing.JLabel();
-        tbdate = new com.toedter.calendar.JDateChooser();
+        tbser = new com.toedter.calendar.JDateChooser();
         bupdate = new javax.swing.JButton();
         bcredit = new javax.swing.JButton();
         bdate = new javax.swing.JLabel();
         tbsearch = new javax.swing.JComboBox<>();
         tbdes = new javax.swing.JTextField();
         bamt = new javax.swing.JLabel();
+        tbdate = new com.toedter.calendar.JDateChooser();
+        bdes1 = new javax.swing.JLabel();
+        bamt1 = new javax.swing.JLabel();
+        bde = new javax.swing.JLabel();
+        bcre = new javax.swing.JLabel();
+        bsts = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(960, 560));
@@ -98,7 +113,7 @@ tbsearch.setBackground(new java.awt.Color(0,0,0,0));
                 bsearchActionPerformed(evt);
             }
         });
-        getContentPane().add(bsearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 110, 40));
+        getContentPane().add(bsearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, 110, 30));
 
         tbsearch2.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
         tbsearch2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -157,11 +172,12 @@ tbsearch.setBackground(new java.awt.Color(0,0,0,0));
         bdes.setText("Description");
         getContentPane().add(bdes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 120, 30));
 
-        tbdate.setBackground(new java.awt.Color(176, 106, 179));
-        tbdate.setForeground(new java.awt.Color(176, 106, 179));
-        tbdate.setOpaque(false);
-        tbdate.setPreferredSize(new java.awt.Dimension(22, 6));
-        getContentPane().add(tbdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 160, 30));
+        tbser.setBackground(new java.awt.Color(176, 106, 179));
+        tbser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tbser.setForeground(new java.awt.Color(176, 106, 179));
+        tbser.setOpaque(false);
+        tbser.setPreferredSize(new java.awt.Dimension(22, 6));
+        getContentPane().add(tbser, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 400, 160, 30));
 
         bupdate.setBackground(new java.awt.Color(176, 106, 179));
         bupdate.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
@@ -180,9 +196,11 @@ tbsearch.setBackground(new java.awt.Color(0,0,0,0));
         bdate.setText("Date");
         getContentPane().add(bdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 120, 30));
 
+        tbsearch.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
+        tbsearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Date", "Describtion" }));
         tbsearch.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         tbsearch.setOpaque(false);
-        getContentPane().add(tbsearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 390, 160, 40));
+        getContentPane().add(tbsearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 110, 30));
 
         tbdes.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
         tbdes.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -194,6 +212,35 @@ tbsearch.setBackground(new java.awt.Color(0,0,0,0));
         bamt.setForeground(new java.awt.Color(0, 0, 0));
         bamt.setText("Amount");
         getContentPane().add(bamt, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 120, 30));
+
+        tbdate.setBackground(new java.awt.Color(176, 106, 179));
+        tbdate.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        tbdate.setForeground(new java.awt.Color(176, 106, 179));
+        tbdate.setOpaque(false);
+        tbdate.setPreferredSize(new java.awt.Dimension(22, 6));
+        getContentPane().add(tbdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 160, 30));
+
+        bdes1.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
+        bdes1.setForeground(new java.awt.Color(0, 0, 0));
+        bdes1.setText("Debit");
+        getContentPane().add(bdes1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 120, 30));
+
+        bamt1.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
+        bamt1.setForeground(new java.awt.Color(0, 0, 0));
+        bamt1.setText("Credit");
+        getContentPane().add(bamt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 120, 30));
+
+        bde.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        bde.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(bde, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 160, 20));
+
+        bcre.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        bcre.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(bcre, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 160, 20));
+
+        bsts.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        bsts.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(bsts, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 310, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sukiva/images/internal.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -220,13 +267,18 @@ tbsearch.setBackground(new java.awt.Color(0,0,0,0));
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bamt;
+    private javax.swing.JLabel bamt1;
+    private javax.swing.JLabel bcre;
     private javax.swing.JButton bcredit;
     private javax.swing.JLabel bdate;
+    private javax.swing.JLabel bde;
     private javax.swing.JButton bdebit;
     private javax.swing.JButton bdelete;
     private javax.swing.JLabel bdes;
+    private javax.swing.JLabel bdes1;
     private javax.swing.JScrollPane bscroll;
     private javax.swing.JButton bsearch;
+    private javax.swing.JLabel bsts;
     private javax.swing.JTable bt;
     private javax.swing.JButton bupdate;
     private javax.swing.JLabel jLabel1;
@@ -235,6 +287,7 @@ tbsearch.setBackground(new java.awt.Color(0,0,0,0));
     private javax.swing.JTextField tbdes;
     private javax.swing.JComboBox<String> tbsearch;
     private javax.swing.JTextField tbsearch2;
+    private com.toedter.calendar.JDateChooser tbser;
     // End of variables declaration//GEN-END:variables
 
 }

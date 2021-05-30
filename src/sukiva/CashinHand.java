@@ -5,6 +5,7 @@
  */
 package sukiva;
 
+import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Font;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
@@ -14,13 +15,13 @@ import javax.swing.table.JTableHeader;
  *
  * @author Snake_Eye
  */
-public class accounts extends javax.swing.JInternalFrame {
+public class CashinHand extends javax.swing.JInternalFrame {
   DefaultTableModel defaultTableModel = new DefaultTableModel();
 
     /**
      * Creates new form accounts
      */
-    public accounts() {
+    public CashinHand() {
         initComponents();
         BasicInternalFrameUI bi = (BasicInternalFrameUI)this.getUI();
         bi.setNorthPane(null);
@@ -28,7 +29,7 @@ public class accounts extends javax.swing.JInternalFrame {
 
         
         tasearch.setBackground(new java.awt.Color(0,0,0,0));
-        tadate.setBackground(new java.awt.Color(0,0,0,0));
+        taser.setBackground(new java.awt.Color(0,0,0,0));
         tasearch2.setBackground(new java.awt.Color(0,0,0,1));
         tades.setBackground(new java.awt.Color(0,0,0,1));
          taamt.setBackground(new java.awt.Color(0,0,0,1));
@@ -50,6 +51,17 @@ public class accounts extends javax.swing.JInternalFrame {
         Object columns[] = {"Description"," Debit","Credit"};
         defaultTableModel.setColumnIdentifiers(columns);
         at.setModel(defaultTableModel);
+        
+        
+        
+        
+        ((JTextFieldDateEditor)tadate1.getDateEditor()).setBackground(new java.awt.Color(0,0,0,1));
+        ((JTextFieldDateEditor)tadate1.getDateEditor()).setBorder(javax.swing.BorderFactory.createEmptyBorder());
+        (tadate1.getCalendarButton()).setBackground(new java.awt.Color(0,0,0,0));
+        
+        ((JTextFieldDateEditor)taser.getDateEditor()).setBackground(new java.awt.Color(0,0,0,1));
+        ((JTextFieldDateEditor)taser.getDateEditor()).setBorder(javax.swing.BorderFactory.createEmptyBorder());
+        (taser.getCalendarButton()).setBackground(new java.awt.Color(0,0,0,0));
     }
 
     /**
@@ -64,7 +76,7 @@ public class accounts extends javax.swing.JInternalFrame {
         ades = new javax.swing.JLabel();
         aamt = new javax.swing.JLabel();
         tades = new javax.swing.JTextField();
-        tadate = new com.toedter.calendar.JDateChooser();
+        taser = new com.toedter.calendar.JDateChooser();
         adate = new javax.swing.JLabel();
         credit = new javax.swing.JButton();
         adelete = new javax.swing.JButton();
@@ -76,6 +88,12 @@ public class accounts extends javax.swing.JInternalFrame {
         debit1 = new javax.swing.JButton();
         ascroll = new javax.swing.JScrollPane();
         at = new javax.swing.JTable();
+        tadate1 = new com.toedter.calendar.JDateChooser();
+        bdes1 = new javax.swing.JLabel();
+        csts = new javax.swing.JLabel();
+        bamt1 = new javax.swing.JLabel();
+        ccre = new javax.swing.JLabel();
+        cde = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(960, 560));
@@ -97,11 +115,12 @@ public class accounts extends javax.swing.JInternalFrame {
         tades.setPreferredSize(new java.awt.Dimension(6, 22));
         getContentPane().add(tades, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 160, 20));
 
-        tadate.setBackground(new java.awt.Color(176, 106, 179));
-        tadate.setForeground(new java.awt.Color(176, 106, 179));
-        tadate.setOpaque(false);
-        tadate.setPreferredSize(new java.awt.Dimension(22, 6));
-        getContentPane().add(tadate, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 160, 30));
+        taser.setBackground(new java.awt.Color(176, 106, 179));
+        taser.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        taser.setForeground(new java.awt.Color(176, 106, 179));
+        taser.setOpaque(false);
+        taser.setPreferredSize(new java.awt.Dimension(22, 6));
+        getContentPane().add(taser, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 400, 160, 30));
 
         adate.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         adate.setForeground(new java.awt.Color(0, 0, 0));
@@ -135,11 +154,13 @@ public class accounts extends javax.swing.JInternalFrame {
                 asearchActionPerformed(evt);
             }
         });
-        getContentPane().add(asearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 110, 40));
+        getContentPane().add(asearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, 110, 30));
 
+        tasearch.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
+        tasearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Date", "Description" }));
         tasearch.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         tasearch.setOpaque(false);
-        getContentPane().add(tasearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 390, 160, 40));
+        getContentPane().add(tasearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 110, 30));
 
         tasearch2.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
         tasearch2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -193,6 +214,35 @@ public class accounts extends javax.swing.JInternalFrame {
 
         getContentPane().add(ascroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 610, 530));
 
+        tadate1.setBackground(new java.awt.Color(176, 106, 179));
+        tadate1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        tadate1.setForeground(new java.awt.Color(176, 106, 179));
+        tadate1.setOpaque(false);
+        tadate1.setPreferredSize(new java.awt.Dimension(22, 6));
+        getContentPane().add(tadate1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 160, 30));
+
+        bdes1.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
+        bdes1.setForeground(new java.awt.Color(0, 0, 0));
+        bdes1.setText("Debit");
+        getContentPane().add(bdes1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 120, 30));
+
+        csts.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        csts.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(csts, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 310, 30));
+
+        bamt1.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
+        bamt1.setForeground(new java.awt.Color(0, 0, 0));
+        bamt1.setText("Credit");
+        getContentPane().add(bamt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 120, 30));
+
+        ccre.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        ccre.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(ccre, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 160, 20));
+
+        cde.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        cde.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(cde, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 160, 20));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sukiva/images/internal.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -220,14 +270,20 @@ public class accounts extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane ascroll;
     private javax.swing.JButton asearch;
     private javax.swing.JTable at;
+    private javax.swing.JLabel bamt1;
+    private javax.swing.JLabel bdes1;
+    private javax.swing.JLabel ccre;
+    private javax.swing.JLabel cde;
     private javax.swing.JButton credit;
+    private javax.swing.JLabel csts;
     private javax.swing.JButton debit1;
     private javax.swing.JButton eupdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField taamt;
-    private com.toedter.calendar.JDateChooser tadate;
+    private com.toedter.calendar.JDateChooser tadate1;
     private javax.swing.JTextField tades;
     private javax.swing.JComboBox<String> tasearch;
     private javax.swing.JTextField tasearch2;
+    private com.toedter.calendar.JDateChooser taser;
     // End of variables declaration//GEN-END:variables
 }

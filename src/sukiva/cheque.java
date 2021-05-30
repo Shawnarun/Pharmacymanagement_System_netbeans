@@ -5,6 +5,7 @@
  */
 package sukiva;
 
+import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Font;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
@@ -48,6 +49,17 @@ DefaultTableModel defaultTableModel = new DefaultTableModel();
          
          
          
+        ((JTextFieldDateEditor)tcqiss.getDateEditor()).setBackground(new java.awt.Color(0,0,0,1));
+        ((JTextFieldDateEditor)tcqiss.getDateEditor()).setBorder(javax.swing.BorderFactory.createEmptyBorder());
+         (tcqiss.getCalendarButton()).setBackground(new java.awt.Color(0,0,0,0));
+
+        ((JTextFieldDateEditor)tcqr1.getDateEditor()).setBackground(new java.awt.Color(0,0,0,1));
+        ((JTextFieldDateEditor)tcqr1.getDateEditor()).setBorder(javax.swing.BorderFactory.createEmptyBorder());
+        (tcqr1.getCalendarButton()).setBackground(new java.awt.Color(0,0,0,0));
+
+        ((JTextFieldDateEditor)tcqser.getDateEditor()).setBackground(new java.awt.Color(0,0,0,1));
+        ((JTextFieldDateEditor)tcqser.getDateEditor()).setBorder(javax.swing.BorderFactory.createEmptyBorder());
+        (tcqser.getCalendarButton()).setBackground(new java.awt.Color(0,0,0,0));
     }
 
     /**
@@ -62,7 +74,7 @@ DefaultTableModel defaultTableModel = new DefaultTableModel();
         cqn = new javax.swing.JLabel();
         tcqn = new javax.swing.JTextField();
         exd = new javax.swing.JLabel();
-        tcqr = new com.toedter.calendar.JDateChooser();
+        tcqser = new com.toedter.calendar.JDateChooser();
         cqiss = new javax.swing.JLabel();
         tcqiss = new com.toedter.calendar.JDateChooser();
         cqa = new javax.swing.JLabel();
@@ -77,6 +89,7 @@ DefaultTableModel defaultTableModel = new DefaultTableModel();
         ct = new javax.swing.JTable();
         tcqsearch = new javax.swing.JComboBox<>();
         tcqsearch2 = new javax.swing.JTextField();
+        tcqr1 = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(960, 560));
@@ -103,17 +116,19 @@ DefaultTableModel defaultTableModel = new DefaultTableModel();
         exd.setText("Realize Date");
         getContentPane().add(exd, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 120, 30));
 
-        tcqr.setBackground(new java.awt.Color(176, 106, 179));
-        tcqr.setForeground(new java.awt.Color(176, 106, 179));
-        tcqr.setOpaque(false);
-        tcqr.setPreferredSize(new java.awt.Dimension(22, 6));
-        getContentPane().add(tcqr, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 160, 30));
+        tcqser.setBackground(new java.awt.Color(176, 106, 179));
+        tcqser.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        tcqser.setForeground(new java.awt.Color(176, 106, 179));
+        tcqser.setOpaque(false);
+        tcqser.setPreferredSize(new java.awt.Dimension(22, 6));
+        getContentPane().add(tcqser, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 400, 160, 30));
 
         cqiss.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         cqiss.setForeground(new java.awt.Color(0, 0, 0));
         cqiss.setText("Issue Date");
         getContentPane().add(cqiss, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 130, 30));
 
+        tcqiss.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         tcqiss.setOpaque(false);
         tcqiss.setPreferredSize(new java.awt.Dimension(22, 6));
         getContentPane().add(tcqiss, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 160, 30));
@@ -134,6 +149,8 @@ DefaultTableModel defaultTableModel = new DefaultTableModel();
         cqst.setText("Status");
         getContentPane().add(cqst, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 120, 30));
 
+        tcqst.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
+        tcqst.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pending", "Passed", "Canceled", "Bounced" }));
         tcqst.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         tcqst.setOpaque(false);
         getContentPane().add(tcqst, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 160, 30));
@@ -165,7 +182,7 @@ DefaultTableModel defaultTableModel = new DefaultTableModel();
         cqsearch.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         cqsearch.setForeground(new java.awt.Color(0, 0, 204));
         cqsearch.setText("Search");
-        getContentPane().add(cqsearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 110, 40));
+        getContentPane().add(cqsearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 110, 30));
 
         cscroll.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         cscroll.setOpaque(false);
@@ -191,6 +208,8 @@ DefaultTableModel defaultTableModel = new DefaultTableModel();
 
         getContentPane().add(cscroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 610, 530));
 
+        tcqsearch.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
+        tcqsearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Payee", "Issue Date", "Realize Date", "Status" }));
         tcqsearch.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         tcqsearch.setOpaque(false);
         tcqsearch.addActionListener(new java.awt.event.ActionListener() {
@@ -198,7 +217,7 @@ DefaultTableModel defaultTableModel = new DefaultTableModel();
                 tcqsearchActionPerformed(evt);
             }
         });
-        getContentPane().add(tcqsearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 390, 160, 40));
+        getContentPane().add(tcqsearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 110, 30));
 
         tcqsearch2.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
         tcqsearch2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -210,6 +229,13 @@ DefaultTableModel defaultTableModel = new DefaultTableModel();
             }
         });
         getContentPane().add(tcqsearch2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 450, 160, 30));
+
+        tcqr1.setBackground(new java.awt.Color(176, 106, 179));
+        tcqr1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        tcqr1.setForeground(new java.awt.Color(176, 106, 179));
+        tcqr1.setOpaque(false);
+        tcqr1.setPreferredSize(new java.awt.Dimension(22, 6));
+        getContentPane().add(tcqr1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 160, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sukiva/images/internal.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -251,9 +277,10 @@ DefaultTableModel defaultTableModel = new DefaultTableModel();
     private javax.swing.JTextField tcqa;
     private com.toedter.calendar.JDateChooser tcqiss;
     private javax.swing.JTextField tcqn;
-    private com.toedter.calendar.JDateChooser tcqr;
+    private com.toedter.calendar.JDateChooser tcqr1;
     private javax.swing.JComboBox<String> tcqsearch;
     private javax.swing.JTextField tcqsearch2;
+    private com.toedter.calendar.JDateChooser tcqser;
     private javax.swing.JComboBox<String> tcqst;
     // End of variables declaration//GEN-END:variables
 }

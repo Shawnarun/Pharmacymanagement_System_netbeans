@@ -5,6 +5,7 @@
  */
 package sukiva;
 
+import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
@@ -30,7 +31,7 @@ public class stock extends javax.swing.JInternalFrame {
 
         tsearch2.setBackground(new java.awt.Color(0,0,0,1));
         tdri.setBackground(new java.awt.Color(0,0,0,1));
-               tdrn.setBackground(new java.awt.Color(0,0,0,1));
+          tdrn.setBackground(new java.awt.Color(0,0,0,1));
 
         tqua.setBackground(new java.awt.Color(0,0,0,1));
         tunp.setBackground(new java.awt.Color(0,0,0,1));
@@ -56,6 +57,17 @@ public class stock extends javax.swing.JInternalFrame {
         st.setModel(defaultTableModel);
   
         
+        ((JTextFieldDateEditor)texp1.getDateEditor()).setBackground(new java.awt.Color(0,0,0,1));
+        ((JTextFieldDateEditor)texp1.getDateEditor()).setBorder(javax.swing.BorderFactory.createEmptyBorder());
+        (texp1.getCalendarButton()).setBackground(new java.awt.Color(0,0,0,0));
+
+        ((JTextFieldDateEditor)tdd.getDateEditor()).setBackground(new java.awt.Color(0,0,0,1));
+        ((JTextFieldDateEditor)tdd.getDateEditor()).setBorder(javax.swing.BorderFactory.createEmptyBorder());
+        (tdd.getCalendarButton()).setBackground(new java.awt.Color(0,0,0,0));
+
+        ((JTextFieldDateEditor)tsear.getDateEditor()).setBackground(new java.awt.Color(0,0,0,1));
+        ((JTextFieldDateEditor)tsear.getDateEditor()).setBorder(javax.swing.BorderFactory.createEmptyBorder());
+        (tsear.getCalendarButton()).setBackground(new java.awt.Color(0,0,0,0));
     }
 
     /**
@@ -83,7 +95,7 @@ public class stock extends javax.swing.JInternalFrame {
         jButton3 = new javax.swing.JButton();
         dd = new javax.swing.JLabel();
         tdd = new com.toedter.calendar.JDateChooser();
-        texp = new com.toedter.calendar.JDateChooser();
+        tsear = new com.toedter.calendar.JDateChooser();
         jButton4 = new javax.swing.JButton();
         scroll = new javax.swing.JScrollPane();
         st = new javax.swing.JTable();
@@ -93,6 +105,7 @@ public class stock extends javax.swing.JInternalFrame {
         bn = new javax.swing.JLabel();
         ta = new javax.swing.JLabel();
         tta = new javax.swing.JTextField();
+        texp1 = new com.toedter.calendar.JDateChooser();
         bg = new javax.swing.JLabel();
 
         setBorder(null);
@@ -105,9 +118,11 @@ public class stock extends javax.swing.JInternalFrame {
         jButton2.setText("Delete");
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 80, 40));
 
+        tsearch.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
+        tsearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Drug Name", "Drug ID", "Brand Name", "EXP Date", "Distributor", "Delivery Date" }));
         tsearch.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         tsearch.setOpaque(false);
-        getContentPane().add(tsearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 440, 160, 40));
+        getContentPane().add(tsearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, 140, 30));
 
         dri.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         dri.setForeground(new java.awt.Color(0, 0, 0));
@@ -177,12 +192,12 @@ public class stock extends javax.swing.JInternalFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 440, 110, 40));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 496, 110, -1));
 
         jButton3.setBackground(new java.awt.Color(176, 106, 179));
         jButton3.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(0, 0, 204));
-        jButton3.setText("update");
+        jButton3.setText("Update");
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 90, 40));
 
         dd.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
@@ -190,15 +205,17 @@ public class stock extends javax.swing.JInternalFrame {
         dd.setText("Delivery Date");
         getContentPane().add(dd, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 130, 30));
 
+        tdd.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         tdd.setOpaque(false);
         tdd.setPreferredSize(new java.awt.Dimension(22, 6));
         getContentPane().add(tdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 160, 30));
 
-        texp.setBackground(new java.awt.Color(176, 106, 179));
-        texp.setForeground(new java.awt.Color(176, 106, 179));
-        texp.setOpaque(false);
-        texp.setPreferredSize(new java.awt.Dimension(22, 6));
-        getContentPane().add(texp, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 160, 30));
+        tsear.setBackground(new java.awt.Color(176, 106, 179));
+        tsear.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        tsear.setForeground(new java.awt.Color(176, 106, 179));
+        tsear.setOpaque(false);
+        tsear.setPreferredSize(new java.awt.Dimension(22, 6));
+        getContentPane().add(tsear, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 450, 160, 30));
 
         jButton4.setBackground(new java.awt.Color(176, 106, 179));
         jButton4.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
@@ -267,6 +284,13 @@ public class stock extends javax.swing.JInternalFrame {
         tta.setPreferredSize(new java.awt.Dimension(6, 22));
         getContentPane().add(tta, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 330, 160, 20));
 
+        texp1.setBackground(new java.awt.Color(176, 106, 179));
+        texp1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        texp1.setForeground(new java.awt.Color(176, 106, 179));
+        texp1.setOpaque(false);
+        texp1.setPreferredSize(new java.awt.Dimension(22, 6));
+        getContentPane().add(texp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 160, 30));
+
         bg.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         bg.setForeground(new java.awt.Color(0, 0, 204));
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sukiva/images/large.png"))); // NOI18N
@@ -311,8 +335,9 @@ public class stock extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> tdis;
     private javax.swing.JTextField tdri;
     private javax.swing.JTextField tdrn;
-    private com.toedter.calendar.JDateChooser texp;
+    private com.toedter.calendar.JDateChooser texp1;
     private javax.swing.JTextField tqua;
+    private com.toedter.calendar.JDateChooser tsear;
     private javax.swing.JComboBox<String> tsearch;
     private javax.swing.JTextField tsearch2;
     private javax.swing.JTextField tta;

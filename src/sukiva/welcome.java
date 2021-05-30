@@ -12,6 +12,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
+import static sukiva.Admin.q;
 
 /**
  *
@@ -199,6 +200,10 @@ int xm;
         // TODO add your handling code here:
         this.dispose();
         new Admin().setVisible(true);
+        q.removeAll();
+        stock ne = new stock();
+        q.add(ne).setVisible(true);
+        
     }//GEN-LAST:event_lnActionPerformed
 
     private void jLabel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseDragged
