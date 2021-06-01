@@ -48,6 +48,7 @@ public class stock extends javax.swing.JInternalFrame {
         st.setBackground(new java.awt.Color(0,0,0,1));
      
         JTableHeader header = st.getTableHeader();
+                header.setEnabled(false);
         header.setBackground(new java.awt.Color(0,0,0,0));
         st.getTableHeader().setFont(new Font("Times New Roman", Font.BOLD, 14));
         

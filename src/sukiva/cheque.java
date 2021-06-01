@@ -39,6 +39,7 @@ DefaultTableModel defaultTableModel = new DefaultTableModel();
      
          
          JTableHeader header = ct.getTableHeader();
+                 header.setEnabled(false);
         header.setBackground(new java.awt.Color(0,0,0,0));
         ct.getTableHeader().setFont(new Font("Times New Roman", Font.BOLD, 14));
         
@@ -209,7 +210,7 @@ DefaultTableModel defaultTableModel = new DefaultTableModel();
         getContentPane().add(cscroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 610, 530));
 
         tcqsearch.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
-        tcqsearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Payee", "Issue Date", "Realize Date", "Status" }));
+        tcqsearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Payee", "Issue Date", "Realize Date", "Pending", "Pass", "Bounced", "Cancelled", " " }));
         tcqsearch.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         tcqsearch.setOpaque(false);
         tcqsearch.addActionListener(new java.awt.event.ActionListener() {

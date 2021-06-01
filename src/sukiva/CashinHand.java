@@ -44,6 +44,7 @@ public class CashinHand extends javax.swing.JInternalFrame {
      
          
          JTableHeader header = at.getTableHeader();
+                 header.setEnabled(false);
         header.setBackground(new java.awt.Color(0,0,0,0));
         at.getTableHeader().setFont(new Font("Times New Roman", Font.BOLD, 14));
         

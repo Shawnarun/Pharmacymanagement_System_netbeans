@@ -359,11 +359,15 @@
           <Font name="Ebrima" size="18" style="1"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
+          <StringArray count="8">
             <StringItem index="0" value="Payee"/>
             <StringItem index="1" value="Issue Date"/>
             <StringItem index="2" value="Realize Date"/>
-            <StringItem index="3" value="Status"/>
+            <StringItem index="3" value="Pending"/>
+            <StringItem index="4" value="Pass"/>
+            <StringItem index="5" value="Bounced"/>
+            <StringItem index="6" value="Cancelled"/>
+            <StringItem index="7" value=" "/>
           </StringArray>
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">

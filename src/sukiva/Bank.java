@@ -24,7 +24,7 @@ DefaultTableModel defaultTableModel = new DefaultTableModel();
         initComponents();
         BasicInternalFrameUI bi = (BasicInternalFrameUI)this.getUI();
         bi.setNorthPane(null);
-this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
 tbsearch.setBackground(new java.awt.Color(0,0,0,0));
         tbser.setBackground(new java.awt.Color(0,0,0,0));
@@ -42,6 +42,7 @@ tbsearch.setBackground(new java.awt.Color(0,0,0,0));
      
          
          JTableHeader header = bt.getTableHeader();
+                 header.setEnabled(false);
         header.setBackground(new java.awt.Color(0,0,0,0));
         bt.getTableHeader().setFont(new Font("Times New Roman", Font.BOLD, 14));
         

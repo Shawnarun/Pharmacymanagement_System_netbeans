@@ -45,6 +45,7 @@ public class distributor extends javax.swing.JInternalFrame {
      
          
          JTableHeader header = dt.getTableHeader();
+                 header.setEnabled(false);
         header.setBackground(new java.awt.Color(0,0,0,0));
         dt.getTableHeader().setFont(new Font("Times New Roman", Font.BOLD, 14));
         

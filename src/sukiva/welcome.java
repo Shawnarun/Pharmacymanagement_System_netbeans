@@ -8,27 +8,43 @@ package sukiva;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.HeadlessException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.BorderFactory;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import static sukiva.Admin.q;
+import static sukiva.billing.qq;
 
 /**
  *
  * @author Snake_Eye
  */
 public class welcome extends javax.swing.JFrame {
-int xm;
-    int ym;
+        int xm;
+        int ym;
+    
+    Connection con = null;
+        PreparedStatement pre= null;
+        ResultSet rs= null, rs2=null;
+        static String NAME;
+    
     /**
      * Creates new form welcome
      */
     public welcome() {
         initComponents();
+           con = DataBase.database.ConnectDb();  
+        
                   setBackground(new Color(0,0,0,0));
                   en.setBackground(new java.awt.Color(0,0,0,1));
                   ep.setBackground(new java.awt.Color(0,0,0,1));
+                  sel.setBackground(new java.awt.Color(0,0,0,0));
 
               
 
@@ -47,6 +63,7 @@ int xm;
         en = new javax.swing.JTextField();
         ep = new javax.swing.JPasswordField();
         ln = new javax.swing.JButton();
+        sel = new javax.swing.JComboBox<>();
         close = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         mini = new javax.swing.JLabel();
@@ -85,17 +102,28 @@ int xm;
             }
         });
 
+        sel.setFont(new java.awt.Font("Ebrima", 1, 12)); // NOI18N
+        sel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Managment", "Billing" }));
+        sel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 255), 1, true));
+        sel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(241, 241, 241)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(en)
-                        .addComponent(ep, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE))
-                    .addComponent(ln, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(en)
+                    .addComponent(ep, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(ln, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)
+                        .addComponent(sel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -106,7 +134,9 @@ int xm;
                 .addGap(27, 27, 27)
                 .addComponent(ep, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42)
-                .addComponent(ln, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(ln, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                    .addComponent(sel))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
@@ -197,13 +227,66 @@ int xm;
     }//GEN-LAST:event_miniMouseClicked
 
     private void lnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lnActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-        new Admin().setVisible(true);
-        q.removeAll();
-        stock ne = new stock();
-        q.add(ne).setVisible(true);
+
+              String user = sel.getSelectedItem().toString();
+              
+             
+              if(en.getText().equals("")||ep.getText().equals("")){
+            
+                    JOptionPane.showMessageDialog(null,"Complete Your Login Information","Missing Information",2);
+}
+              else {
+    
+                   String sql =  "Select * from login where username=? and password=?";
+                        try{
+                   
+                            pre=con.prepareStatement(sql);
+                            pre.setString(1,en.getText());
+                            pre.setString(2,ep.getText());
+                            rs=pre.executeQuery();
+               
+
+                                if(rs.next())
+                                
+                                  { 
+                                      if(user.equals("Managment"))
+                                      {
+                                              
+                                      rs.close();
+                                     pre.close();
+                                     this.dispose();
+                                    new Admin().setVisible(true);
+                                    q.removeAll();
+                                    stock ne = new stock();
+                                    q.add(ne).setVisible(true);
+                                      }
+                  
+                                else if (user.equals("Billing"))
+                                   {
+                                    rs.close();
+                                    pre.close();
+                         
+                                    this.dispose();
+                                    new billing().setVisible(true);
+                                    qq.removeAll();
+                                    bill ne = new bill();
+                                    qq.add(ne).setVisible(true); 
+       
+                                    }
+               
+                    }  else {
+                   
+                                        JOptionPane.showMessageDialog(null,"Wrong Password or Username","Failed Access",2);
+
+                             }
+                        }
+                        catch (HeadlessException | SQLException e) {
+
+                   JOptionPane.showMessageDialog(null, "Login Failed", "Error", JOptionPane.WARNING_MESSAGE);}
+      
         
+                                }
+              
     }//GEN-LAST:event_lnActionPerformed
 
     private void jLabel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseDragged
@@ -218,6 +301,10 @@ int xm;
         xm=evt.getX();
         ym=evt.getY();
     }//GEN-LAST:event_jLabel1MousePressed
+
+    private void selActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_selActionPerformed
 
     /**
      * @param args the command line arguments
@@ -263,5 +350,6 @@ int xm;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton ln;
     private javax.swing.JLabel mini;
+    private javax.swing.JComboBox<String> sel;
     // End of variables declaration//GEN-END:variables
 }
