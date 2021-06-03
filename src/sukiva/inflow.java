@@ -53,7 +53,7 @@ DefaultTableModel defaultTableModel = new DefaultTableModel();
         Object columns[] = {"Description"," Debit","Credit"};
         defaultTableModel.setColumnIdentifiers(columns);
        it.setModel(defaultTableModel);
-
+   it.setDefaultEditor(Object.class, null);
 
 
         ((JTextFieldDateEditor)tbdate.getDateEditor()).setBackground(new java.awt.Color(0,0,0,1));

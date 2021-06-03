@@ -7,9 +7,20 @@ package sukiva;
 
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Font;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import static sukiva.Admin.q;
 
 /**
  *
@@ -17,21 +28,31 @@ import javax.swing.table.JTableHeader;
  */
 public class cheque extends javax.swing.JInternalFrame {
 DefaultTableModel defaultTableModel = new DefaultTableModel();
+   int deletee;
+   java.util.Date date;
+   java.sql.Date sqlda;
+   java.util.Date date1;
+ java.sql.Date sqldate;
     /**
      * Creates new form cheque
      */
+Connection connection = null;
+    PreparedStatement prp = null;
+    ResultSet rs = null;
     public cheque() {
         initComponents();
+        connection = DataBase.database.ConnectDb();
+        
         BasicInternalFrameUI bi = (BasicInternalFrameUI)this.getUI();
         bi.setNorthPane(null);
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
          tcqn.setBackground(new java.awt.Color(0,0,0,1));
          tcqa.setBackground(new java.awt.Color(0,0,0,1));
-         tcqst.setBackground(new java.awt.Color(0,0,0,0));
+         tcqnum.setBackground(new java.awt.Color(0,0,0,1));
          tcqsearch.setBackground(new java.awt.Color(0,0,0,0));
          tcqsearch2.setBackground(new java.awt.Color(0,0,0,1));
-        
+        tcqst.setBackground(new java.awt.Color(0,0,0,0));
          
          cscroll.setBackground(new java.awt.Color(0,0,0,1));
         cscroll.getViewport().setBackground(new java.awt.Color(0,0,0,1));
@@ -44,23 +65,52 @@ DefaultTableModel defaultTableModel = new DefaultTableModel();
         ct.getTableHeader().setFont(new Font("Times New Roman", Font.BOLD, 14));
         
     
-        Object columns[] = {"Cheque Name"," Issue Date", " Realize Date","Status","Amount"};
+        Object columns[] = {"Cheque Name"," Issue Date", " Realize Date","Status","Amount","C_N","ID"};
         defaultTableModel.setColumnIdentifiers(columns);
         ct.setModel(defaultTableModel);
-         
+            ct.setDefaultEditor(Object.class, null);
          
          
         ((JTextFieldDateEditor)tcqiss.getDateEditor()).setBackground(new java.awt.Color(0,0,0,1));
         ((JTextFieldDateEditor)tcqiss.getDateEditor()).setBorder(javax.swing.BorderFactory.createEmptyBorder());
          (tcqiss.getCalendarButton()).setBackground(new java.awt.Color(0,0,0,0));
 
-        ((JTextFieldDateEditor)tcqr1.getDateEditor()).setBackground(new java.awt.Color(0,0,0,1));
-        ((JTextFieldDateEditor)tcqr1.getDateEditor()).setBorder(javax.swing.BorderFactory.createEmptyBorder());
-        (tcqr1.getCalendarButton()).setBackground(new java.awt.Color(0,0,0,0));
+        ((JTextFieldDateEditor)tcqr.getDateEditor()).setBackground(new java.awt.Color(0,0,0,1));
+        ((JTextFieldDateEditor)tcqr.getDateEditor()).setBorder(javax.swing.BorderFactory.createEmptyBorder());
+        (tcqr.getCalendarButton()).setBackground(new java.awt.Color(0,0,0,0));
 
         ((JTextFieldDateEditor)tcqser.getDateEditor()).setBackground(new java.awt.Color(0,0,0,1));
         ((JTextFieldDateEditor)tcqser.getDateEditor()).setBorder(javax.swing.BorderFactory.createEmptyBorder());
         (tcqser.getCalendarButton()).setBackground(new java.awt.Color(0,0,0,0));
+        
+        loadData();
+    }
+
+        public void loadData() {
+        //Object columns[] = {"Cheque Name"," Issue Date", " Realize Date","Status","Amount","C_N","ID"};
+        String sql = "SELECT `name`, `idate`, `rdate`, `num`, `chid`, `amount`,`status` FROM `cheque`";
+        try {
+            prp = connection.prepareStatement(sql);
+            rs = prp.executeQuery();
+            Object columnData[] = new Object[7];
+            while (rs.next()) {
+                columnData[0] = rs.getString("name");
+                columnData[1] = rs.getString("idate");
+                columnData[2] = rs.getString("rdate");
+                columnData[3] = rs.getString("status");
+                columnData[4] = rs.getString("amount");
+               columnData[5] = rs.getString("num");
+              columnData[6] = rs.getString("chid");
+                  defaultTableModel.addRow(columnData);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        tcqn.setText(null);
+        tcqa.setText(null);
+        tcqiss.setDate(null);
+        tcqr.setDate(null);
+        tcqnum.setText(null);
     }
 
     /**
@@ -90,7 +140,9 @@ DefaultTableModel defaultTableModel = new DefaultTableModel();
         ct = new javax.swing.JTable();
         tcqsearch = new javax.swing.JComboBox<>();
         tcqsearch2 = new javax.swing.JTextField();
-        tcqr1 = new com.toedter.calendar.JDateChooser();
+        tcqr = new com.toedter.calendar.JDateChooser();
+        cqn1 = new javax.swing.JLabel();
+        tcqnum = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(960, 560));
@@ -150,6 +202,7 @@ DefaultTableModel defaultTableModel = new DefaultTableModel();
         cqst.setText("Status");
         getContentPane().add(cqst, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 120, 30));
 
+        tcqst.setEditable(true);
         tcqst.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         tcqst.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pending", "Passed", "Canceled", "Bounced" }));
         tcqst.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -160,6 +213,11 @@ DefaultTableModel defaultTableModel = new DefaultTableModel();
         cqadd.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
         cqadd.setForeground(new java.awt.Color(0, 0, 204));
         cqadd.setText("Add");
+        cqadd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cqaddActionPerformed(evt);
+            }
+        });
         getContentPane().add(cqadd, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 80, 40));
 
         cqdelete.setBackground(new java.awt.Color(176, 106, 179));
@@ -177,6 +235,11 @@ DefaultTableModel defaultTableModel = new DefaultTableModel();
         cqupdate.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
         cqupdate.setForeground(new java.awt.Color(0, 0, 204));
         cqupdate.setText("update");
+        cqupdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cqupdateActionPerformed(evt);
+            }
+        });
         getContentPane().add(cqupdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 90, 40));
 
         cqsearch.setBackground(new java.awt.Color(176, 106, 179));
@@ -205,6 +268,11 @@ DefaultTableModel defaultTableModel = new DefaultTableModel();
         ));
         ct.setGridColor(new java.awt.Color(0, 0, 0));
         ct.setOpaque(false);
+        ct.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ctMouseClicked(evt);
+            }
+        });
         cscroll.setViewportView(ct);
 
         getContentPane().add(cscroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 610, 530));
@@ -231,12 +299,28 @@ DefaultTableModel defaultTableModel = new DefaultTableModel();
         });
         getContentPane().add(tcqsearch2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 450, 160, 30));
 
-        tcqr1.setBackground(new java.awt.Color(176, 106, 179));
-        tcqr1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        tcqr1.setForeground(new java.awt.Color(176, 106, 179));
-        tcqr1.setOpaque(false);
-        tcqr1.setPreferredSize(new java.awt.Dimension(22, 6));
-        getContentPane().add(tcqr1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 160, 30));
+        tcqr.setBackground(new java.awt.Color(176, 106, 179));
+        tcqr.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        tcqr.setForeground(new java.awt.Color(176, 106, 179));
+        tcqr.setOpaque(false);
+        tcqr.setPreferredSize(new java.awt.Dimension(22, 6));
+        getContentPane().add(tcqr, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 160, 30));
+
+        cqn1.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
+        cqn1.setForeground(new java.awt.Color(0, 0, 0));
+        cqn1.setText("Cheque no");
+        getContentPane().add(cqn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 120, 30));
+
+        tcqnum.setFont(new java.awt.Font("Ebrima", 0, 14)); // NOI18N
+        tcqnum.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        tcqnum.setOpaque(false);
+        tcqnum.setPreferredSize(new java.awt.Dimension(6, 22));
+        tcqnum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tcqnumActionPerformed(evt);
+            }
+        });
+        getContentPane().add(tcqnum, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, 160, 20));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sukiva/images/internal.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -251,6 +335,21 @@ DefaultTableModel defaultTableModel = new DefaultTableModel();
 
     private void cqdeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cqdeleteActionPerformed
         // TODO add your handling code here:
+        
+        String sql = "DELETE FROM `cheque`WHERE chid ='" + deletee + "'";
+        try {
+            prp = connection.prepareStatement(sql);
+            prp.execute();
+            JOptionPane.showMessageDialog(null, "Employer " + deletee + " has been deleted");
+            defaultTableModel.getDataVector().removeAllElements();
+            defaultTableModel.fireTableDataChanged();
+            loadData();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Employer nicid " + deletee + " not found");
+        }
+        
+        
+        
     }//GEN-LAST:event_cqdeleteActionPerformed
 
     private void tcqsearch2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tcqsearch2ActionPerformed
@@ -261,6 +360,128 @@ DefaultTableModel defaultTableModel = new DefaultTableModel();
         // TODO add your handling code here:
     }//GEN-LAST:event_tcqsearchActionPerformed
 
+    private void tcqnumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tcqnumActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tcqnumActionPerformed
+
+    private void cqaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cqaddActionPerformed
+        // TODO add your handling code here:
+        String cname=tcqn.getText();
+        Double amount=Double.parseDouble(tcqa.getText());
+        
+        date=tcqiss.getDate();
+        sqlda= new java.sql.Date(date.getTime());
+        
+        date1=tcqr.getDate();
+        sqldate= new java.sql.Date(date1.getTime());
+        
+     
+         String stat = tcqst.getSelectedItem().toString();
+                 String num =tcqnum.getText();
+
+
+         if(cname.equals("")||amount.equals("")||tcqiss.equals("")||tcqr.equals("")||stat.equals("")||num.equals("")){
+
+            JOptionPane.showMessageDialog(null,"Complete Your Account Information","Missing Information",2);
+
+        }
+        else {
+            String sql = "INSERT INTO `cheque`(`name`, `idate`, `rdate`, `num`, `amount`, `status`)  VALUES (?,?,?,?,?,?)";
+            if (connection != null) {
+
+                try {
+                    prp = connection.prepareStatement(sql);
+                    prp.setString(1, cname);
+                    prp.setDate(2,sqlda );
+                     prp.setDate(3, sqldate);
+                    prp.setString(4, num);
+                    prp.setDouble(5, amount);
+                    prp.setString(6, stat);
+                    
+                    prp.execute();
+                    defaultTableModel.getDataVector().removeAllElements();
+                    defaultTableModel.fireTableDataChanged();
+                    loadData();
+                    JOptionPane.showMessageDialog(null, "Data Saved");
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, e);
+                }
+            }
+        }
+        
+        
+    }//GEN-LAST:event_cqaddActionPerformed
+
+    private void ctMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ctMouseClicked
+        // TODO add your handling code here:
+        //Object columns[] = {"Cheque Name"," Issue Date", " Realize Date","Status","Amount"};
+         int row = ct.getSelectedRow();
+        
+        tcqn.setText(ct.getValueAt(row, 0).toString());
+        
+         
+    try {
+             java.util.Date h = new SimpleDateFormat("yyyy-MM-dd").parse((String)ct.getValueAt(row, 1).toString());
+              tcqiss.setDate(h);
+              java.util.Date hh = new SimpleDateFormat("yyyy-MM-dd").parse((String)ct.getValueAt(row, 2).toString());
+              tcqr.setDate(hh);
+
+    } catch (ParseException ex) {
+        Logger.getLogger(cheque.class.getName()).log(Level.SEVERE, null, ex);
+    }
+                    
+       tcqst.getEditor().setItem(ct.getValueAt(row, 3).toString());
+        tcqa.setText(ct.getValueAt(row, 4).toString());
+         tcqnum.setText(ct.getValueAt(row, 5).toString());
+          deletee = Integer.parseInt(ct.getValueAt(row, 6).toString());
+
+         
+    }//GEN-LAST:event_ctMouseClicked
+
+    private void cqupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cqupdateActionPerformed
+        // TODO add your handling code here:
+          String cname=tcqn.getText();
+        Double amount=Double.parseDouble(tcqa.getText());
+        
+        date=tcqiss.getDate();
+        sqlda= new java.sql.Date(date.getTime());
+        
+        date1=tcqr.getDate();
+        sqldate= new java.sql.Date(date1.getTime());
+        
+   
+         String stat = tcqst.getSelectedItem().toString();
+                 String num =tcqnum.getText();
+
+
+         if(cname.equals("")||amount.equals("")||tcqiss.equals("")||tcqr.equals("")||stat.equals("")||num.equals("")){
+
+            JOptionPane.showMessageDialog(null,"Complete Your Account Information","Missing Information",2);
+
+        }
+        else {
+            String sql = "UPDATE `cheque` SET `name`='"+ cname +"',`idate`='"+sqlda+"',`rdate`='"+sqldate+"',`num`='"+num+"',`amount`='"+amount+"',`status`='"+stat+"' WHERE chid ='" + deletee + "' ";
+            if (connection != null) {
+
+                try {    
+                     prp = connection.prepareStatement(sql);
+                    prp.execute();
+                    defaultTableModel.getDataVector().removeAllElements();
+                    defaultTableModel.fireTableDataChanged();
+                    loadData();
+                     q.removeAll();
+        cheque ne = new cheque();
+        q.add(ne).setVisible(true);
+                    JOptionPane.showMessageDialog(null, "Data Saved");
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, e);
+                }
+            }
+        }
+        
+        
+    }//GEN-LAST:event_cqupdateActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel cqa;
@@ -268,6 +489,7 @@ DefaultTableModel defaultTableModel = new DefaultTableModel();
     private javax.swing.JButton cqdelete;
     private javax.swing.JLabel cqiss;
     private javax.swing.JLabel cqn;
+    private javax.swing.JLabel cqn1;
     private javax.swing.JButton cqsearch;
     private javax.swing.JLabel cqst;
     private javax.swing.JButton cqupdate;
@@ -278,7 +500,8 @@ DefaultTableModel defaultTableModel = new DefaultTableModel();
     private javax.swing.JTextField tcqa;
     private com.toedter.calendar.JDateChooser tcqiss;
     private javax.swing.JTextField tcqn;
-    private com.toedter.calendar.JDateChooser tcqr1;
+    private javax.swing.JTextField tcqnum;
+    private com.toedter.calendar.JDateChooser tcqr;
     private javax.swing.JComboBox<String> tcqsearch;
     private javax.swing.JTextField tcqsearch2;
     private com.toedter.calendar.JDateChooser tcqser;

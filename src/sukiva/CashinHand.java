@@ -7,9 +7,19 @@ package sukiva;
 
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Font;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import static sukiva.Admin.q;
 
 /**
  *
@@ -17,7 +27,12 @@ import javax.swing.table.JTableHeader;
  */
 public class CashinHand extends javax.swing.JInternalFrame {
   DefaultTableModel defaultTableModel = new DefaultTableModel();
-
+Connection connection = null;
+    PreparedStatement prp = null;
+    ResultSet rs = null;
+    java.util.Date date;
+   java.sql.Date sqlda;
+   int del;
     /**
      * Creates new form accounts
      */
@@ -26,7 +41,7 @@ public class CashinHand extends javax.swing.JInternalFrame {
         BasicInternalFrameUI bi = (BasicInternalFrameUI)this.getUI();
         bi.setNorthPane(null);
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-
+         connection = DataBase.database.ConnectDb();
         
         tasearch.setBackground(new java.awt.Color(0,0,0,0));
         taser.setBackground(new java.awt.Color(0,0,0,0));
@@ -49,10 +64,10 @@ public class CashinHand extends javax.swing.JInternalFrame {
         at.getTableHeader().setFont(new Font("Times New Roman", Font.BOLD, 14));
         
     
-        Object columns[] = {"Description"," Debit","Credit"};
+        Object columns[] = {"ID","Date","Description"," Debit","Credit"};
         defaultTableModel.setColumnIdentifiers(columns);
         at.setModel(defaultTableModel);
-        
+         at.setDefaultEditor(Object.class, null);
         
         
         
@@ -63,8 +78,32 @@ public class CashinHand extends javax.swing.JInternalFrame {
         ((JTextFieldDateEditor)taser.getDateEditor()).setBackground(new java.awt.Color(0,0,0,1));
         ((JTextFieldDateEditor)taser.getDateEditor()).setBorder(javax.swing.BorderFactory.createEmptyBorder());
         (taser.getCalendarButton()).setBackground(new java.awt.Color(0,0,0,0));
+        loadData();
+        
     }
-
+public void loadData() {
+        //Object columns[] = {"ID","Description"," Debit","Credit"};
+        String sql = "SELECT `describtion`, `amountcash`, `datecash`, `debitcash`, `creaditcash`, `cashid` FROM `cashinhand`";
+        try {
+            prp = connection.prepareStatement(sql);
+            rs = prp.executeQuery();
+            Object columnData[] = new Object[7];
+            while (rs.next()) {
+                columnData[0] = rs.getString("cashid");
+                columnData[1] = rs.getString("datecash");
+                columnData[2] = rs.getString("describtion");
+                columnData[3] = rs.getString("debitcash");
+                columnData[4] = rs.getString("creaditcash");
+                  defaultTableModel.addRow(columnData);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        tades.setText(null);
+        taamt.setText(null);
+        tadate1.setDate(null);
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -132,18 +171,33 @@ public class CashinHand extends javax.swing.JInternalFrame {
         credit.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
         credit.setForeground(new java.awt.Color(0, 0, 204));
         credit.setText("CREDIT");
+        credit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                creditActionPerformed(evt);
+            }
+        });
         getContentPane().add(credit, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 90, 40));
 
         adelete.setBackground(new java.awt.Color(176, 106, 179));
         adelete.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
         adelete.setForeground(new java.awt.Color(0, 0, 204));
         adelete.setText("Delete");
+        adelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adeleteActionPerformed(evt);
+            }
+        });
         getContentPane().add(adelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 80, 40));
 
         eupdate.setBackground(new java.awt.Color(176, 106, 179));
         eupdate.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
         eupdate.setForeground(new java.awt.Color(0, 0, 204));
         eupdate.setText("update");
+        eupdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eupdateActionPerformed(evt);
+            }
+        });
         getContentPane().add(eupdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 90, 40));
 
         asearch.setBackground(new java.awt.Color(176, 106, 179));
@@ -211,6 +265,11 @@ public class CashinHand extends javax.swing.JInternalFrame {
         ));
         at.setGridColor(new java.awt.Color(0, 0, 0));
         at.setOpaque(false);
+        at.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                atMouseClicked(evt);
+            }
+        });
         ascroll.setViewportView(at);
 
         getContentPane().add(ascroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 610, 530));
@@ -260,7 +319,194 @@ public class CashinHand extends javax.swing.JInternalFrame {
 
     private void debit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_debit1ActionPerformed
         // TODO add your handling code here:
+        String dis=tades.getText();
+        Double amount=Double.parseDouble(taamt.getText());
+         
+        date=tadate1.getDate();
+        sqlda= new java.sql.Date(date.getTime());
+       
+
+
+         if(dis.equals("")||amount.equals("")||amount.equals("")||date.equals("")){
+
+            JOptionPane.showMessageDialog(null,"Complete Your Account Information","Missing Information",2);
+
+        }
+        else {
+            String sql = "INSERT INTO `cashinhand`(`describtion`, `amountcash`, `datecash`, `debitcash`)  VALUES (?,?,?,?)";
+            if (connection != null) {
+
+                try {
+                    prp = connection.prepareStatement(sql);
+                    prp.setString(1, dis);
+                    prp.setDouble(2, amount);
+                     prp.setDate(3, sqlda);
+                    prp.setDouble(4, amount);
+                
+                    
+                    prp.execute();
+                    defaultTableModel.getDataVector().removeAllElements();
+                    defaultTableModel.fireTableDataChanged();
+                    loadData();
+                    JOptionPane.showMessageDialog(null, "Data Saved");
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, e);
+                }
+            }
+        }
+        
+        
     }//GEN-LAST:event_debit1ActionPerformed
+
+    private void creditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creditActionPerformed
+        // TODO add your handling code here:
+        String dis=tades.getText();
+        Double amount=Double.parseDouble(taamt.getText());
+      
+        date=tadate1.getDate();
+        sqlda= new java.sql.Date(date.getTime());
+       
+
+
+         if((dis.equals(""))||(taamt.getText().equals(""))){
+
+            JOptionPane.showMessageDialog(null,"Complete Your Account Information","Missing Information",2);
+
+        }
+        else {
+            String sql = "INSERT INTO `cashinhand`(`describtion`, `amountcash`, `datecash`, `creaditcash` )  VALUES (?,?,?,?)";
+            if (connection != null) {
+
+                try {
+                    prp = connection.prepareStatement(sql);
+                    prp.setString(1, dis);
+                    prp.setDouble(2, amount);
+                     prp.setDate(3, sqlda);
+                    prp.setDouble(4, amount);
+                   
+                  
+                    
+                    prp.execute();
+                    defaultTableModel.getDataVector().removeAllElements();
+                    defaultTableModel.fireTableDataChanged();
+                    loadData();
+                    JOptionPane.showMessageDialog(null, "Data Saved");
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, e);
+                }
+            }
+        }
+    }//GEN-LAST:event_creditActionPerformed
+
+    private void adeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adeleteActionPerformed
+        // TODO add your handling code here:
+        
+        
+         String sql = "DELETE FROM `cashinhand` WHERE cashid ='" + del + "'";
+        try {
+            prp = connection.prepareStatement(sql);
+            prp.execute();
+            JOptionPane.showMessageDialog(null, "Record has been deleted");
+            defaultTableModel.getDataVector().removeAllElements();
+            defaultTableModel.fireTableDataChanged();
+            loadData();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Record not found");
+        }
+        
+    }//GEN-LAST:event_adeleteActionPerformed
+
+    private void atMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atMouseClicked
+        // TODO add your handling code here:
+            Object columns[] = {"ID","Date","Description"," Debit","Credit"};
+
+         int row = at.getSelectedRow(); 
+            try {
+             java.util.Date h = new SimpleDateFormat("yyyy-MM-dd").parse((String)at.getValueAt(row, 1).toString());
+              tadate1.setDate(h);
+              
+             } catch (ParseException ex) {
+                     Logger.getLogger(CashinHand.class.getName()).log(Level.SEVERE, null, ex);
+                }
+             
+        tades.setText(at.getValueAt(row, 2).toString());
+    
+          if("0.0".equals(at.getValueAt(row, 3).toString()))
+          {
+              taamt.setText(at.getValueAt(row, 4).toString());
+          }
+          else if("0.0".equals(at.getValueAt(row, 4).toString()))
+          {
+               taamt.setText(at.getValueAt(row, 3).toString());
+          }
+         
+         
+        
+         del = Integer.parseInt(at.getValueAt(row, 0).toString());
+        
+    }//GEN-LAST:event_atMouseClicked
+
+    private void eupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eupdateActionPerformed
+        // TODO add your handling code here:
+        int row = at.getSelectedRow(); 
+            String cname=tades.getText();
+        Double amount=Double.parseDouble(taamt.getText());
+        
+        date=tadate1.getDate();
+        sqlda= new java.sql.Date(date.getTime());
+        
+       
+
+
+         if(cname.equals("")||amount.equals("")){
+
+            JOptionPane.showMessageDialog(null,"Complete Your Account Information","Missing Information",2);
+
+        }
+        else if("0.0".equals(at.getValueAt(row, 3).toString()))
+         {
+            String sql = "UPDATE `cashinhand` SET `describtion`='"+cname+"',`amountcash`='"+amount+"',`datecash`='"+sqlda+"',`creaditcash`='"+amount+"' WHERE `cashid`='"+del+"'";
+            if (connection != null) {
+
+                try {    
+                     prp = connection.prepareStatement(sql);
+                    prp.execute();
+                    defaultTableModel.getDataVector().removeAllElements();
+                    defaultTableModel.fireTableDataChanged();
+                    loadData();
+                      q.removeAll();
+                      CashinHand ne = new CashinHand();
+                        q.add(ne).setVisible(true);
+                    JOptionPane.showMessageDialog(null, "Data Saved");
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, e);
+                }
+            }
+        }
+         else if("0.0".equals(at.getValueAt(row, 4).toString()))
+         {
+            String sql = "UPDATE `cashinhand` SET `describtion`='"+cname+"',`amountcash`='"+amount+"',`datecash`='"+sqlda+"',`debitcash`='"+amount+"' WHERE `cashid`='"+del+"'";
+            if (connection != null) {
+
+                try {    
+                     prp = connection.prepareStatement(sql);
+                    prp.execute();
+                    defaultTableModel.getDataVector().removeAllElements();
+                    defaultTableModel.fireTableDataChanged();
+                    loadData();
+                      q.removeAll();
+                          CashinHand ne = new CashinHand();
+                             q.add(ne).setVisible(true);
+                    JOptionPane.showMessageDialog(null, "Data Saved");
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, e);
+                }
+            }
+        }
+        
+        
+        
+    }//GEN-LAST:event_eupdateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

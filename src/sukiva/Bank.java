@@ -50,7 +50,7 @@ tbsearch.setBackground(new java.awt.Color(0,0,0,0));
         Object columns[] = {"Description"," Debit","Credit"};
         defaultTableModel.setColumnIdentifiers(columns);
         bt.setModel(defaultTableModel);
-
+        bt.setDefaultEditor(Object.class, null);
 
 
         ((JTextFieldDateEditor)tbdate.getDateEditor()).setBackground(new java.awt.Color(0,0,0,1));

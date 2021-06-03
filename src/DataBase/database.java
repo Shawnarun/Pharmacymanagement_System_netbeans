@@ -23,7 +23,7 @@ public class database {
         Connection connection = null;
         try {
 
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/suki", "root", "");
             return connection;
         } 

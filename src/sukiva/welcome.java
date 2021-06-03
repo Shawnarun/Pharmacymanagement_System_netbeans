@@ -33,7 +33,7 @@ public class welcome extends javax.swing.JFrame {
         PreparedStatement pre= null;
         ResultSet rs= null, rs2=null;
         static String NAME;
-    
+    int a=2;
     /**
      * Creates new form welcome
      */

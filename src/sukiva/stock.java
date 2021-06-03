@@ -51,7 +51,7 @@ public class stock extends javax.swing.JInternalFrame {
                 header.setEnabled(false);
         header.setBackground(new java.awt.Color(0,0,0,0));
         st.getTableHeader().setFont(new Font("Times New Roman", Font.BOLD, 14));
-        
+          st.setDefaultEditor(Object.class, null);
     
         Object columns[] = {"Drugs Name", "EXP Date", "Distributor Name","Brand Name","Quantity"};
         defaultTableModel.setColumnIdentifiers(columns);

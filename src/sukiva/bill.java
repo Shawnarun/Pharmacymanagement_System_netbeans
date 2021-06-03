@@ -49,7 +49,7 @@ public class bill extends javax.swing.JInternalFrame {
         Object columns[] = {"Drugs Name","Unitprice","Quantity","Total"};
         defaultTableModel.setColumnIdentifiers(columns);
         st.setModel(defaultTableModel);
-        
+        st.setDefaultEditor(Object.class, null);
         
         ((JTextFieldDateEditor)tdd.getDateEditor()).setBackground(new java.awt.Color(0,0,0,1));
         ((JTextFieldDateEditor)tdd.getDateEditor()).setBorder(javax.swing.BorderFactory.createEmptyBorder());

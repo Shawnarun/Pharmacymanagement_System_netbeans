@@ -44,8 +44,9 @@ public class Admin extends javax.swing.JFrame {
         q = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        bg = new javax.swing.JLabel();
+        admin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(150, 30));
@@ -139,6 +140,18 @@ public class Admin extends javax.swing.JFrame {
         });
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 20, 30, 20));
 
+        jLabel4.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Admin");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 30, 140, 20));
+
+        jLabel3.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 jLabel3MouseDragged(evt);
@@ -149,14 +162,14 @@ public class Admin extends javax.swing.JFrame {
                 jLabel3MousePressed(evt);
             }
         });
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 50));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 1000, 50));
 
-        bg.setBackground(new java.awt.Color(176, 106, 179));
-        bg.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
-        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sukiva/images/admin.png"))); // NOI18N
-        bg.setText("jLabel1");
-        bg.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 999, -1));
+        admin.setBackground(new java.awt.Color(176, 106, 179));
+        admin.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
+        admin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sukiva/images/admin.png"))); // NOI18N
+        admin.setText("jLabel1");
+        admin.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(admin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 999, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -247,6 +260,13 @@ public class Admin extends javax.swing.JFrame {
         q.add(ne).setVisible(true);
     }//GEN-LAST:event_accounts1ActionPerformed
 
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+          q.removeAll();
+        dashboard ne = new dashboard();
+        q.add(ne).setVisible(true);
+    }//GEN-LAST:event_jLabel4MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -286,14 +306,15 @@ public class Admin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton accounts1;
+    public static javax.swing.JLabel admin;
     private javax.swing.JLabel back;
-    private javax.swing.JLabel bg;
     private javax.swing.JButton cheque;
     private javax.swing.JButton distributor;
     private javax.swing.JButton employer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     public static javax.swing.JPanel q;
     private javax.swing.JButton stock;
     // End of variables declaration//GEN-END:variables
